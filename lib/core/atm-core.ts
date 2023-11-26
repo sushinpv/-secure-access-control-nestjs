@@ -1,13 +1,11 @@
-'use strict';
+"use strict";
 
-import jwt from 'jsonwebtoken';
-import * as sha256 from 'sha256';
+import * as jwt from "jsonwebtoken";
+import * as sha256 from "sha256";
 
-const ACM_JWT_SECRET_KEY =
-  process.env.ACM_JWT_SECRET_KEY ||
-  'qW3L4CgVH9LlNBA20DppJmeMiiEEmxIBdro85Rf1cTzGcRVYH14GtLZw4hwJUFbW';
-const ACM_TOKEN_LIFETIME = process.env.ACM_TOKEN_LIFETIME || '10min';
-const ACM_TOKEN_ISSUER = process.env.ACM_TOKEN_ISSUER || 'example.com';
+const ACM_JWT_SECRET_KEY = process.env.ACM_JWT_SECRET_KEY || "qW3L4CgVH9LlNBA20DppJmeMiiEEmxIBdro85Rf1cTzGcRVYH14GtLZw4hwJUFbW";
+const ACM_TOKEN_LIFETIME = process.env.ACM_TOKEN_LIFETIME || "10min";
+const ACM_TOKEN_ISSUER = process.env.ACM_TOKEN_ISSUER || "example.com";
 
 /**
  * JWT library wrapper
@@ -60,19 +58,18 @@ const AccessTokenManager = {
    * @param { string } userAgent
    */
   verify: (accessToken: string, userAgent: string) => {
-    const tokenArray = accessToken.split('.');
-    if (tokenArray.length == 0) throw { statusCode: 498, message: 'Logout' };
+    const tokenArray = accessToken.split(".");
+    if (tokenArray.length == 0) throw { statusCode: 498, message: "Logout" };
 
     const requestTokenHash = tokenArray.pop();
-    const token = tokenArray.join('.');
-    const decodedToken = JWTService.decode(token);
+    const token = tokenArray.join(".");
+    const decodedToken: any = JWTService.decode(token);
 
-    if (!decodedToken.client) throw { statusCode: 498, message: 'Logout' };
+    if (!decodedToken.client) throw { statusCode: 498, message: "Logout" };
 
     userAgent = sha256(userAgent);
     const tokenHash = sha256(`${token}.${decodedToken.client}.${userAgent}`);
-    if (requestTokenHash !== tokenHash)
-      throw { statusCode: 498, message: 'Logout' };
+    if (requestTokenHash !== tokenHash) throw { statusCode: 498, message: "Logout" };
 
     return decodedToken;
   },

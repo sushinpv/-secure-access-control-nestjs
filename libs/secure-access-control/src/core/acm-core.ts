@@ -1,5 +1,5 @@
 import { ForbiddenException, UnauthorizedException } from '@nestjs/common';
-import { AccessTokenManager } from '@secure-access-control';
+import AccessTokenManager from './atm-core';
 import { Request } from 'express';
 import * as sha256 from 'sha256';
 

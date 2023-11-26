@@ -1,10 +1,10 @@
 {
   "name": "@secure-access-control/nestjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "author": "Sushin Pv",
   "license": "MIT",
-  "main": "dist/libs/secure-access-control/index.js",
+  "main": "libs/secure-access-control/src/index.ts",
   "scripts": {
     "build": "rm -rf dist && nest build",
     "build:lib": "yarn build secure-access-control",

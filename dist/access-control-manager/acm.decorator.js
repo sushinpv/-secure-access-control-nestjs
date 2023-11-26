@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AcmHealth = exports.AcmDisable = exports.AcmService = exports.AcmPublic = void 0;
+const common_1 = require("@nestjs/common");
+const AcmPublic = () => (0, common_1.SetMetadata)("isAcmPublic", true);
+exports.AcmPublic = AcmPublic;
+const AcmService = () => (0, common_1.SetMetadata)("IsAcmService", true);
+exports.AcmService = AcmService;
+const AcmDisable = () => (0, common_1.SetMetadata)("IsAcmDisable", true);
+exports.AcmDisable = AcmDisable;
+const AcmHealth = () => (0, common_1.SetMetadata)("IsAcmHealth", true);
+exports.AcmHealth = AcmHealth;

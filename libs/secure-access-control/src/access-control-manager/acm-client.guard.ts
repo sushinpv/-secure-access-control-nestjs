@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
-import accessControlService from './acm-lib';
+import accessControlService from '../core/acm-core';
 
 @Injectable()
 export default class AcmClient implements CanActivate {

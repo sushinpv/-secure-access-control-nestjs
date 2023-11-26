@@ -3,6 +3,18 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true
+  },
+  "projects": {
+    "secure-access-control": {
+      "type": "library",
+      "root": "libs/secure-access-control",
+      "entryFile": "index",
+      "sourceRoot": "libs/secure-access-control/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/secure-access-control/tsconfig.lib.json"
+      }
+    }
   }
 }

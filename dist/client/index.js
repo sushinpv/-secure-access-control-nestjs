@@ -14,10 +14,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AccessTokenManager = exports.AccessControlManager = exports.Client = void 0;
-__exportStar(require("./access-control-manager/acm.decorator"), exports);
-exports.Client = require("./client");
-const acm_client_guard_1 = require("./access-control-manager/acm-client.guard");
-const atm_core_1 = require("./core/atm-core");
-exports.AccessControlManager = acm_client_guard_1.default;
-exports.AccessTokenManager = atm_core_1.default;
+exports.base64 = exports.UUID = void 0;
+__exportStar(require("./client"), exports);
+const base64_1 = require("./base64");
+exports.base64 = base64_1.default;
+const uuid_1 = require("./uuid");
+Object.defineProperty(exports, "UUID", { enumerable: true, get: function () { return uuid_1.UUID; } });

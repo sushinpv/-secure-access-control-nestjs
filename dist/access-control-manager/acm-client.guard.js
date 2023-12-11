@@ -24,7 +24,7 @@ let AcmClient = class AcmClient {
         if (IsHealth)
             return true;
         const request = context.switchToHttp().getRequest();
-        if (IsDisable != true || process.env.NODE_ENV != "development") {
+        if ((IsDisable != true || process.env.NODE_ENV != "development") && process.env.NODE_ENV !== "test") {
             acm_core_1.default.client(request);
         }
         if (isPublic)

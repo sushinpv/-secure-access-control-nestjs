@@ -1,6 +1,8 @@
 import { SetMetadata } from "@nestjs/common";
 
-export const AcmPublic = () => SetMetadata("isAcmPublic", true);
+export const AcmPublic = () => SetMetadata("IsAcmPublic", true);
+
+export const AcmWebhook = () => SetMetadata("IsAcmWebhook", true);
 
 export const AcmService = () => SetMetadata("IsAcmService", true);
 

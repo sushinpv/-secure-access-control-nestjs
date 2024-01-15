@@ -17,7 +17,10 @@ let AcmClient = class AcmClient {
         this.reflector = reflector;
     }
     canActivate(context) {
-        const isPublic = this.reflector.get("isAcmPublic", context.getHandler());
+        const IsWebhook = this.reflector.get("IsAcmWebhook", context.getHandler());
+        if (IsWebhook)
+            return true;
+        const IsPublic = this.reflector.get("IsAcmPublic", context.getHandler());
         const IsService = this.reflector.get("IsAcmService", context.getHandler());
         const IsDisable = this.reflector.get("IsAcmDisable", context.getHandler());
         const IsHealth = this.reflector.get("IsAcmHealth", context.getHandler());
@@ -27,7 +30,7 @@ let AcmClient = class AcmClient {
         if ((IsDisable != true || process.env.NODE_ENV != "development") && process.env.NODE_ENV !== "test") {
             acm_core_1.default.client(request);
         }
-        if (isPublic)
+        if (IsPublic)
             return true;
         if (IsService)
             return acm_core_1.default.service(request);

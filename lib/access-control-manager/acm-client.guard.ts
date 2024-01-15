@@ -8,7 +8,10 @@ export default class AcmClient implements CanActivate {
   constructor(private readonly reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-    const isPublic = this.reflector.get<boolean>("isAcmPublic", context.getHandler());
+    const IsWebhook = this.reflector.get<boolean>("IsAcmWebhook", context.getHandler());
+    if (IsWebhook) return true;
+
+    const IsPublic = this.reflector.get<boolean>("IsAcmPublic", context.getHandler());
     const IsService = this.reflector.get<boolean>("IsAcmService", context.getHandler());
 
     const IsDisable = this.reflector.get<boolean>("IsAcmDisable", context.getHandler());
@@ -21,7 +24,7 @@ export default class AcmClient implements CanActivate {
     if ((IsDisable != true || process.env.NODE_ENV != "development") && process.env.NODE_ENV !== "test") {
       accessControlService.client(request);
     }
-    if (isPublic) return true;
+    if (IsPublic) return true;
     if (IsService) return accessControlService.service(request);
 
     return accessControlService.auth(request);

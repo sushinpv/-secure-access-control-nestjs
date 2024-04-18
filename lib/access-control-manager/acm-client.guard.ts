@@ -21,11 +21,12 @@ export default class AcmClient implements CanActivate {
 
     const request = context.switchToHttp().getRequest();
 
+    if (IsService) return accessControlService.service(request);
+
     if ((IsDisable != true || process.env.NODE_ENV != "development") && process.env.NODE_ENV !== "test") {
       accessControlService.client(request);
     }
     if (IsPublic) return true;
-    if (IsService) return accessControlService.service(request);
 
     return accessControlService.auth(request);
   }

@@ -27,13 +27,13 @@ let AcmClient = class AcmClient {
         if (IsHealth)
             return true;
         const request = context.switchToHttp().getRequest();
+        if (IsService)
+            return acm_core_1.default.service(request);
         if ((IsDisable != true || process.env.NODE_ENV != "development") && process.env.NODE_ENV !== "test") {
             acm_core_1.default.client(request);
         }
         if (IsPublic)
             return true;
-        if (IsService)
-            return acm_core_1.default.service(request);
         return acm_core_1.default.auth(request);
     }
 };
